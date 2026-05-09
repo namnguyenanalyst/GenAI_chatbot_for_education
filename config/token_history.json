@@ -1,0 +1,272 @@
+[
+    {
+        "timestamp": "2026-04-21 15:51:14",
+        "chat_id": "20260421_155048",
+        "intent": "CHAT",
+        "query_preview": "xin chào",
+        "input_tokens": 14,
+        "output_tokens": 590,
+        "total_tokens": 604
+    },
+    {
+        "timestamp": "2026-04-21 15:52:00",
+        "chat_id": "20260421_155048",
+        "intent": "CHAT",
+        "query_preview": "Bạn là ai",
+        "input_tokens": 82,
+        "output_tokens": 614,
+        "total_tokens": 696
+    },
+    {
+        "timestamp": "2026-04-21 15:58:47",
+        "chat_id": "20260421_155048",
+        "intent": "CHAT",
+        "query_preview": "Tôi tưởng bạn là AI agent của bên HUMG",
+        "input_tokens": 171,
+        "output_tokens": 1349,
+        "total_tokens": 1520
+    },
+    {
+        "timestamp": "2026-04-22 09:21:02",
+        "chat_id": "20260421_172320",
+        "intent": "CHAT",
+        "query_preview": "xin chào",
+        "input_tokens": 294,
+        "output_tokens": 547,
+        "total_tokens": 841
+    },
+    {
+        "timestamp": "2026-04-22 09:23:18",
+        "chat_id": "20260422_092134",
+        "intent": "CHAT",
+        "query_preview": "mình chào bạn nhé",
+        "input_tokens": 708,
+        "output_tokens": 609,
+        "total_tokens": 1317
+    },
+    {
+        "timestamp": "2026-04-22 09:39:22",
+        "chat_id": "20260422_093835",
+        "intent": "CHAT",
+        "query_preview": "xin chào",
+        "input_tokens": 14,
+        "output_tokens": 648,
+        "total_tokens": 662
+    },
+    {
+        "timestamp": "2026-04-22 09:40:54",
+        "chat_id": "20260422_093835",
+        "intent": "RAG",
+        "query_preview": "Tôi muốn tìm hiểu về học phần CCM301",
+        "input_tokens": 6722,
+        "output_tokens": 3068,
+        "total_tokens": 9790
+    },
+    {
+        "timestamp": "2026-04-22 10:06:25",
+        "chat_id": "20260422_095623",
+        "intent": "RAG",
+        "query_preview": "cho tôi nội dung có trong file Test_Data",
+        "input_tokens": 7381,
+        "output_tokens": 1764,
+        "total_tokens": 9145
+    },
+    {
+        "timestamp": "2026-04-22 10:12:55",
+        "chat_id": "20260422_095623",
+        "intent": "RAG",
+        "query_preview": "bạn xem lại nội dung có trong file Test_Data",
+        "input_tokens": 7942,
+        "output_tokens": 2385,
+        "total_tokens": 10327
+    },
+    {
+        "timestamp": "2026-04-22 10:20:01",
+        "chat_id": "20260422_095623",
+        "intent": "RAG",
+        "query_preview": "Bạn thử lại lần nữa xem",
+        "input_tokens": 8220,
+        "output_tokens": 2630,
+        "total_tokens": 10850
+    },
+    {
+        "timestamp": "2026-04-22 11:29:57",
+        "chat_id": "20260422_112633",
+        "intent": "RAG",
+        "query_preview": "cho tôi hỏi nội dung có trong file Test_Data",
+        "input_tokens": 7399,
+        "output_tokens": 2128,
+        "total_tokens": 9527
+    },
+    {
+        "timestamp": "2026-04-22 11:34:56",
+        "chat_id": "20260422_112633",
+        "intent": "RAG",
+        "query_preview": "Thử xem lại nội dung được không",
+        "input_tokens": 8319,
+        "output_tokens": 2283,
+        "total_tokens": 10602
+    },
+    {
+        "timestamp": "2026-04-25 17:48:43",
+        "chat_id": "20260425_174707",
+        "intent": "CHAT",
+        "query_preview": "hello",
+        "input_tokens": 13,
+        "output_tokens": 516,
+        "total_tokens": 529
+    },
+    {
+        "timestamp": "2026-05-05 21:05:32",
+        "chat_id": "20260505_210413",
+        "intent": "CHAT",
+        "query_preview": "xin chào",
+        "input_tokens": 14,
+        "output_tokens": 464,
+        "total_tokens": 478
+    },
+    {
+        "timestamp": "2026-05-05 21:21:19",
+        "chat_id": "20260505_212106",
+        "intent": "CHAT",
+        "query_preview": "xin chào",
+        "input_tokens": 14,
+        "output_tokens": 615,
+        "total_tokens": 629
+    },
+    {
+        "timestamp": "2026-05-05 21:23:49",
+        "chat_id": "20260505_212106",
+        "intent": "RAG",
+        "query_preview": "Tôi muốn tìm hiểu vấn đề về tài chính cá nhân",
+        "input_tokens": 6910,
+        "output_tokens": 1851,
+        "total_tokens": 8761
+    },
+    {
+        "timestamp": "2026-05-05 21:28:36",
+        "chat_id": "20260505_212106",
+        "intent": "CHAT",
+        "query_preview": "thế hôm nay thời tiết thế nào hả bạn",
+        "input_tokens": 133,
+        "output_tokens": 945,
+        "total_tokens": 1078
+    },
+    {
+        "timestamp": "2026-05-05 21:33:03",
+        "chat_id": "20260505_213249",
+        "intent": "CHAT",
+        "query_preview": "xin chào",
+        "input_tokens": 69,
+        "output_tokens": 435,
+        "total_tokens": 504
+    },
+    {
+        "timestamp": "2026-05-05 21:36:24",
+        "chat_id": "20260505_213249",
+        "intent": "RAG",
+        "query_preview": "Biết Vũ Thị Kim Ngân là ai không ?",
+        "input_tokens": 8426,
+        "output_tokens": 2636,
+        "total_tokens": 11062
+    },
+    {
+        "timestamp": "2026-05-05 21:40:27",
+        "chat_id": "20260505_213249",
+        "intent": "CHAT",
+        "query_preview": "quá chuẩn",
+        "input_tokens": 425,
+        "output_tokens": 445,
+        "total_tokens": 870
+    },
+    {
+        "timestamp": "2026-05-05 21:41:26",
+        "chat_id": "20260505_213249",
+        "intent": "RAG",
+        "query_preview": "Biết Nguyễn Hà Vy là ai không",
+        "input_tokens": 8408,
+        "output_tokens": 2702,
+        "total_tokens": 11110
+    },
+    {
+        "timestamp": "2026-05-05 21:42:13",
+        "chat_id": "20260505_213249",
+        "intent": "CHAT",
+        "query_preview": "Oke bạn",
+        "input_tokens": 746,
+        "output_tokens": 514,
+        "total_tokens": 1260
+    },
+    {
+        "timestamp": "2026-05-05 21:50:00",
+        "chat_id": "20260505_213249",
+        "intent": "RAG",
+        "query_preview": "Biết Lê Hương Giang là ai không",
+        "input_tokens": 6550,
+        "output_tokens": 2769,
+        "total_tokens": 9319
+    },
+    {
+        "timestamp": "2026-05-05 21:50:31",
+        "chat_id": "20260505_213249",
+        "intent": "CHAT",
+        "query_preview": "Thế biết tao là ai không",
+        "input_tokens": 784,
+        "output_tokens": 877,
+        "total_tokens": 1661
+    },
+    {
+        "timestamp": "2026-05-05 21:51:14",
+        "chat_id": "20260505_213249",
+        "intent": "CHAT",
+        "query_preview": "vãi ò tao chế tạo ra mày mà mày không biêt tao",
+        "input_tokens": 612,
+        "output_tokens": 981,
+        "total_tokens": 1593
+    },
+    {
+        "timestamp": "2026-05-05 21:52:23",
+        "chat_id": "20260505_213249",
+        "intent": "RAG",
+        "query_preview": "Tôi là Nguyễn Hải Nam, biết là ai không",
+        "input_tokens": 9057,
+        "output_tokens": 3223,
+        "total_tokens": 12280
+    },
+    {
+        "timestamp": "2026-05-05 21:59:50",
+        "chat_id": "20260505_213249",
+        "intent": "CHAT",
+        "query_preview": "Bạn thấy tôi có đẹp trai không",
+        "input_tokens": 754,
+        "output_tokens": 918,
+        "total_tokens": 1672
+    },
+    {
+        "timestamp": "2026-05-05 22:00:31",
+        "chat_id": "20260505_213249",
+        "intent": "CHAT",
+        "query_preview": "chuẩn rồi đấy",
+        "input_tokens": 749,
+        "output_tokens": 507,
+        "total_tokens": 1256
+    },
+    {
+        "timestamp": "2026-05-05 22:04:05",
+        "chat_id": "20260505_213249",
+        "intent": "RAG",
+        "query_preview": "Hãy cho tôi bản mẫu kiểm thử ",
+        "input_tokens": 10333,
+        "output_tokens": 2403,
+        "total_tokens": 12736
+    },
+    {
+        "timestamp": "2026-05-05 22:19:15",
+        "chat_id": "20260505_213249",
+        "intent": "CHAT",
+        "query_preview": "Viết một bài văn mô tả quê hương Bắc Ninh",
+        "input_tokens": 561,
+        "output_tokens": 1638,
+        "total_tokens": 2199
+    }
+]

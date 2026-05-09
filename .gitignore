@@ -1,0 +1,19 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Database & Sensitive info
+config/vector_db/
+.env
+config/chat_history.json
+config/data_registry.json
+config/vertex-ai-key.json
+
+# Mac OS files
+.DS_Store
+
+# Note files
+docs/note.docx

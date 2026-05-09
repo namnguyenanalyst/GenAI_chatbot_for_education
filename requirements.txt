@@ -1,0 +1,30 @@
+# Giao diện và Hệ thống
+streamlit==1.56.0
+python-dotenv==1.2.2
+watchdog==6.0.0
+
+# Trí tuệ nhân tạo (Gemini & LangChain)
+langchain==1.2.15
+langchain-google-genai==4.2.1
+langchain-community==0.4.1
+langchain-core==1.2.28
+langchain-text-splitters==1.1.1
+langchain-chroma==1.1.0
+
+# Cơ sở dữ liệu Vector
+chromadb==1.5.7
+
+# Xử lý định dạng tài liệu
+pypdf==6.10.0
+docx2txt
+openpyxl
+unstructured
+python-pptx
+
+# Mã hóa và bảo mật
+msoffcrypto-tool
+
+# Xử lý dữ liệu và trực quan hóa
+networkx
+
+
