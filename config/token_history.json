@@ -493,5 +493,23 @@
         "input_tokens": 241,
         "output_tokens": 323,
         "total_tokens": 564
+    },
+    {
+        "timestamp": "2026-05-25 11:56:14",
+        "chat_id": "20260525_115525",
+        "intent": "CHAT",
+        "query_preview": "xin chào",
+        "input_tokens": 84,
+        "output_tokens": 23,
+        "total_tokens": 107
+    },
+    {
+        "timestamp": "2026-05-25 11:57:31",
+        "chat_id": "20260525_115525",
+        "intent": "RAG",
+        "query_preview": "Khoa Công nghệ thông tin Đại học Mỏ - Địa chất đượ...",
+        "input_tokens": 1427,
+        "output_tokens": 47,
+        "total_tokens": 1474
     }
 ]
