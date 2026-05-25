@@ -268,5 +268,230 @@
         "input_tokens": 561,
         "output_tokens": 1638,
         "total_tokens": 2199
+    },
+    {
+        "timestamp": "2026-05-25 10:27:12",
+        "chat_id": "20260525_102438",
+        "intent": "CHAT",
+        "query_preview": "xin chào",
+        "input_tokens": 84,
+        "output_tokens": 23,
+        "total_tokens": 107
+    },
+    {
+        "timestamp": "2026-05-25 10:29:29",
+        "chat_id": "20260525_102438",
+        "intent": "CHAT",
+        "query_preview": "Bạn là ai",
+        "input_tokens": 113,
+        "output_tokens": 31,
+        "total_tokens": 144
+    },
+    {
+        "timestamp": "2026-05-25 10:45:55",
+        "chat_id": "20260525_104547",
+        "intent": "CHAT",
+        "query_preview": "xin chào",
+        "input_tokens": 84,
+        "output_tokens": 23,
+        "total_tokens": 107
+    },
+    {
+        "timestamp": "2026-05-25 10:46:09",
+        "chat_id": "20260525_104547",
+        "intent": "CHAT",
+        "query_preview": "Bạn có tác dụng gì",
+        "input_tokens": 115,
+        "output_tokens": 61,
+        "total_tokens": 176
+    },
+    {
+        "timestamp": "2026-05-25 10:49:42",
+        "chat_id": "20260525_104924",
+        "intent": "CHAT",
+        "query_preview": "hello",
+        "input_tokens": 82,
+        "output_tokens": 13,
+        "total_tokens": 95
+    },
+    {
+        "timestamp": "2026-05-25 10:53:39",
+        "chat_id": "20260525_104924",
+        "intent": "CHAT",
+        "query_preview": "Bạn hãy cho tôi thông tin có ở trong phiếu đề xuất...",
+        "input_tokens": 146,
+        "output_tokens": 53,
+        "total_tokens": 199
+    },
+    {
+        "timestamp": "2026-05-25 10:53:52",
+        "chat_id": "20260525_104924",
+        "intent": "CHAT",
+        "query_preview": "Bạn hãy cho tôi thông tin có ở trong phiếu đề xuất...",
+        "input_tokens": 224,
+        "output_tokens": 48,
+        "total_tokens": 272
+    },
+    {
+        "timestamp": "2026-05-25 10:54:36",
+        "chat_id": "20260525_104924",
+        "intent": "CHAT",
+        "query_preview": "\n📂 Quản lý tài liệu\n📤 Tải lên học liệu\nPhiếu đề xu...",
+        "input_tokens": 319,
+        "output_tokens": 217,
+        "total_tokens": 536
+    },
+    {
+        "timestamp": "2026-05-25 10:55:38",
+        "chat_id": "20260525_104924",
+        "intent": "CHAT",
+        "query_preview": "cho tôi thông tin Phiếu đề xuất đề tài NCKH SV",
+        "input_tokens": 501,
+        "output_tokens": 214,
+        "total_tokens": 715
+    },
+    {
+        "timestamp": "2026-05-25 10:55:54",
+        "chat_id": "20260525_104924",
+        "intent": "RAG",
+        "query_preview": "Tên đề tài của học sinh nguyễn hải nam",
+        "input_tokens": 2993,
+        "output_tokens": 58,
+        "total_tokens": 3051
+    },
+    {
+        "timestamp": "2026-05-25 10:56:22",
+        "chat_id": "20260525_104924",
+        "intent": "CHAT",
+        "query_preview": "Trong phiếu đề xuất của thầy Nguyễn Thế Bình có nh...",
+        "input_tokens": 623,
+        "output_tokens": 165,
+        "total_tokens": 788
+    },
+    {
+        "timestamp": "2026-05-25 10:56:28",
+        "chat_id": "20260525_104924",
+        "intent": "CHAT",
+        "query_preview": "1",
+        "input_tokens": 560,
+        "output_tokens": 83,
+        "total_tokens": 643
+    },
+    {
+        "timestamp": "2026-05-25 11:02:28",
+        "chat_id": "20260525_110207",
+        "intent": "CHAT",
+        "query_preview": "Hãy cho tôi thông tin trong phiếu đề xuất NCKH của...",
+        "input_tokens": 98,
+        "output_tokens": 90,
+        "total_tokens": 188
+    },
+    {
+        "timestamp": "2026-05-25 11:02:50",
+        "chat_id": "20260525_110207",
+        "intent": "CHAT",
+        "query_preview": "hãy cho tôi thông tin chi tiết về nhóm NCKH có tên...",
+        "input_tokens": 208,
+        "output_tokens": 86,
+        "total_tokens": 294
+    },
+    {
+        "timestamp": "2026-05-25 11:03:24",
+        "chat_id": "20260525_110207",
+        "intent": "CHAT",
+        "query_preview": "http://localhost:9200/humg_documents/_search?prett...",
+        "input_tokens": 313,
+        "output_tokens": 104,
+        "total_tokens": 417
+    },
+    {
+        "timestamp": "2026-05-25 11:03:30",
+        "chat_id": "20260525_110207",
+        "intent": "CHAT",
+        "query_preview": "hãy cho tôi thông tin chi tiết về nhóm NCKH có tên...",
+        "input_tokens": 418,
+        "output_tokens": 95,
+        "total_tokens": 513
+    },
+    {
+        "timestamp": "2026-05-25 11:04:05",
+        "chat_id": "20260525_110351",
+        "intent": "CHAT",
+        "query_preview": "hãy cho tôi thông tin chi tiết về nhóm NCKH có tên...",
+        "input_tokens": 98,
+        "output_tokens": 74,
+        "total_tokens": 172
+    },
+    {
+        "timestamp": "2026-05-25 11:04:21",
+        "chat_id": "20260525_110351",
+        "intent": "RAG",
+        "query_preview": "sinh viên nguyễn hải nam ",
+        "input_tokens": 2523,
+        "output_tokens": 272,
+        "total_tokens": 2795
+    },
+    {
+        "timestamp": "2026-05-25 11:05:26",
+        "chat_id": "20260525_110351",
+        "intent": "RAG",
+        "query_preview": "cho tôi thông tin cả nhóm NCKK chung nhóm với NGuy...",
+        "input_tokens": 2816,
+        "output_tokens": 281,
+        "total_tokens": 3097
+    },
+    {
+        "timestamp": "2026-05-25 11:05:56",
+        "chat_id": "20260525_110351",
+        "intent": "RAG",
+        "query_preview": "hãy trả về cho tôi chủ đề của tất cả các nhóm NCKH",
+        "input_tokens": 3096,
+        "output_tokens": 67,
+        "total_tokens": 3163
+    },
+    {
+        "timestamp": "2026-05-25 11:06:17",
+        "chat_id": "20260525_110351",
+        "intent": "RAG",
+        "query_preview": "tôi bảo là tất cả các nhóm",
+        "input_tokens": 3090,
+        "output_tokens": 87,
+        "total_tokens": 3177
+    },
+    {
+        "timestamp": "2026-05-25 11:06:36",
+        "chat_id": "20260525_110351",
+        "intent": "CHAT",
+        "query_preview": "tóm tắt phiếu đề xuất này cho tôi",
+        "input_tokens": 556,
+        "output_tokens": 241,
+        "total_tokens": 797
+    },
+    {
+        "timestamp": "2026-05-25 11:07:08",
+        "chat_id": "20260525_110351",
+        "intent": "CHAT",
+        "query_preview": "bạn có thể dựa vào các phần trên và làm thật chi t...",
+        "input_tokens": 523,
+        "output_tokens": 408,
+        "total_tokens": 931
+    },
+    {
+        "timestamp": "2026-05-25 11:07:55",
+        "chat_id": "20260525_110734",
+        "intent": "RAG",
+        "query_preview": "Cho tôi thông tin các thành viên trong nhóm NCKH c...",
+        "input_tokens": 2437,
+        "output_tokens": 116,
+        "total_tokens": 2553
+    },
+    {
+        "timestamp": "2026-05-25 11:08:36",
+        "chat_id": "20260525_110734",
+        "intent": "CHAT",
+        "query_preview": "hãy tổng kết lại tất cả các ý trong phiếu NCKH này...",
+        "input_tokens": 241,
+        "output_tokens": 323,
+        "total_tokens": 564
     }
 ]

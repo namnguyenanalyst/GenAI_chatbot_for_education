@@ -1,8 +1,8 @@
 import time
 import json
 from pathlib import Path
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from langchain_chroma import Chroma
+from langchain_ollama import OllamaEmbeddings
+from langchain_elasticsearch import ElasticsearchStore
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 def process_and_embed(new_docs, db_dir):
@@ -45,19 +45,35 @@ def process_and_embed(new_docs, db_dir):
         return True
 
     batch_size = 10
-    vector_db = Chroma(
-        embedding_function=GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001"),
-        persist_directory=str(db_dir)
+    
+    # Khởi tạo ElasticsearchStore thay vì Chroma
+    vector_db = ElasticsearchStore(
+        embedding=OllamaEmbeddings(model="nomic-embed-text"),
+        index_name="humg_documents",
+        es_url="http://localhost:9200"
     )
 
     # XOÁ CHUNKS CŨ ĐỂ CẬP NHẬT MỚI
     source_path = all_chunks[0].metadata.get("source", "")
     if source_path:
         try:
-            existing_docs = vector_db.get(where={"source": source_path})
-            if existing_docs and existing_docs.get("ids"):
-                vector_db.delete(ids=existing_docs["ids"])
-                print(f"🗑️ Đã xoá {len(existing_docs['ids'])} chunks cũ của {Path(source_path).name}.")
+            # ElasticsearchStore cung cấp phương thức delete dựa trên metadata nếu ta dùng query
+            # Hoặc ta có thể xoá qua Elasticsearch client. Tuy nhiên trong langchain ElasticsearchStore:
+            # Ta dùng es_connection để thực thi delete by query.
+            client = vector_db.client
+            query = {
+                "query": {
+                    "match": {
+                        "metadata.source.keyword": source_path
+                    }
+                }
+            }
+            # Cần chắc chắn index tồn tại trước khi xoá
+            if client.indices.exists(index="humg_documents"):
+                res = client.delete_by_query(index="humg_documents", body=query, ignore_unavailable=True)
+                deleted_count = res.get('deleted', 0)
+                if deleted_count > 0:
+                    print(f"🗑️ Đã xoá {deleted_count} chunks cũ của {Path(source_path).name}.")
         except Exception as e:
             print(f"⚠️ Không thể xoá chunk cũ (có thể chưa tồn tại): {e}")
 

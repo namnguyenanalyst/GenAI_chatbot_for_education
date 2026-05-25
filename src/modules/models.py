@@ -4,12 +4,11 @@ from dotenv import load_dotenv
 import streamlit as st
 
 from langchain_community.vectorstores import Chroma
-from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain_classic.chains import create_retrieval_chain
 from langchain_classic.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate, PromptTemplate
-from langchain_chroma import Chroma
+from langchain_elasticsearch import ElasticsearchStore
 from langchain_classic.retrievers.multi_query import MultiQueryRetriever
 
 # --- 1. THIẾT LẬP ĐƯỜNG DẪN TƯƠNG ĐỐI ---
@@ -42,45 +41,26 @@ if env_key:
 
 @st.cache_resource
 def init_models():
-    api_key = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-    if not api_key:
-        st.error("⚠️ Không tìm thấy API Key trong file .env!")
-        st.stop()
-
-    PROJECT_ID = "gen-lang-client-0339091224"
-    LOCATION = "global"
-
-    # Khởi tạo Embeddings
-    # Nếu API của Google không tiếp tục xài được thì sẽ chuyển sang sử dụng API của Vertex AI
-
-    embeddings = GoogleGenerativeAIEmbeddings(
-        model="models/gemini-embedding-001",
-        project=PROJECT_ID,
-        # google_api_key=api_key
-        location=LOCATION
+    # Khởi tạo Embeddings chạy trên Ollama (nomic-embed-text)
+    embeddings = OllamaEmbeddings(
+        model="nomic-embed-text"
     )
 
-    # Khởi tạo LLM
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-3.1-pro-preview",
-        project=PROJECT_ID,
-        location="global",
+    # Khởi tạo LLM chính chạy trên Ollama (qwen2.5:7b)
+    llm = ChatOllama(
+        model="qwen2.5:7b",
         temperature=0.3,
     )
 
-    # Kết nối Vector DB bằng đường dẫn tương đối
-    vector_db = Chroma(
-        persist_directory=str(DB_DIR), 
-        embedding_function=embeddings
+    # Kết nối Vector DB bằng ElasticsearchStore
+    vector_db = ElasticsearchStore(
+        embedding=embeddings,
+        index_name="humg_documents",
+        es_url="http://localhost:9200"
     )
     
     # Tăng base_retriever k lên 15 để lưới quét rộng hơn
-    base_retriever = vector_db.as_retriever(search_kwargs={"k": 15})
-    
-    # Dùng MultiQueryRetriever để LLM tự sinh thêm câu hỏi đồng nghĩa
-    retriever = MultiQueryRetriever.from_llm(
-        retriever=base_retriever, llm=llm
-    )
+    retriever = vector_db.as_retriever(search_kwargs={"k": 15})
     
     system_prompt = (
         "Bạn là Trợ lý Học liệu số chuyên nghiệp và thân thiện của nhóm NCKH HUMG (Đại học Mỏ - Địa chất).\n\n"
@@ -120,6 +100,11 @@ llm, rag_chain = init_models()
 
 # --- 2. HÀM PHÂN LOẠI Ý ĐỊNH (ROUTER) ---
 def classify_intent(user_query, messages):
+    # LỌC NHANH (Rule-based): Bỏ qua LLM nếu là câu hỏi ngắn/giao tiếp
+    chat_keywords = ["chào", "hello", "hi", "tác dụng", "là ai", "giúp gì", "cảm ơn", "tạm biệt", "ok", "dạ", "vậy bạn"]
+    if len(user_query.split()) < 4 or any(k in user_query.lower() for k in chat_keywords):
+        return "CHAT"
+
     history_context = ""
     for m in messages[-6:]:
         role = "Sinh viên" if m["role"] == "user" else "Trợ lý"
@@ -141,6 +126,7 @@ def classify_intent(user_query, messages):
     Chỉ trả ra đúng 1 từ duy nhất: 'RAG' hoặc 'CHAT'.
     """
     
+    # SỬ DỤNG CHUNG LLM CHÍNH CHO PHÂN LOẠI
     response = llm.invoke(classification_prompt)
     
     if isinstance(response.content, list):

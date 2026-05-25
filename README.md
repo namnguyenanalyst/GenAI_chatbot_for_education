@@ -1,66 +1,68 @@
 # HUMG AI Assistant - Trợ Lý Học Liệu Số NCKH 🤖📚
 
-Chào mừng bạn đến với **HUMG AI Assistant** – một sản phẩm trí tuệ nhân tạo được thiết kế đặc biệt để giúp bạn tự động hóa việc đọc, phân loại và truy vấn học liệu. Hãy tưởng tượng thay vì phải lật tung hàng trăm trang PDF giáo trình để tìm một công thức, bạn chỉ việc gõ câu hỏi, AI sẽ tự tìm, trích xuất và giải thích dựa trên chính xác tài liệu bạn cung cấp.
+Chào mừng bạn đến với **HUMG AI Assistant** – một sản phẩm trí tuệ nhân tạo được thiết kế đặc biệt để giúp sinh viên Đại học Mỏ - Địa chất (HUMG) tự động hóa việc đọc, phân loại và truy vấn học liệu. Hệ thống chạy **100% Offline (Local)** với tốc độ cao, đảm bảo tuyệt đối an toàn dữ liệu và không lo giới hạn API.
 
 ---
 
 ## 🌟 Những Năng Lực Cốt Lõi
 
-1. **🧠 Nạp "Não Bộ" Tự Động (Auto-Embedding):** 
-   Một "robot tàng hình" luôn túc trực, mỗi khi bạn tải một file tài liệu mới lên, hệ thống sẽ tự động đem đi đọc và nén vào trí nhớ mà không cần bạn làm gì thêm!
-2. **🔎 Đọc Tên Bắt Hình Dong (Smart RAG):** 
-   AI tự động hiểu câu hỏi, lục lọi thẳng vào bộ tài liệu (PDF, Word, Excel, Slide) và chỉ lôi ra những đáp án sát nhất với văn bản gốc.
+1. **🧠 Chạy 100% Offline (Ollama):** 
+   Sử dụng mô hình ngôn ngữ lớn (LLM) `Qwen 2.5` và mô hình nhúng `Nomic-Embed-Text` chạy trực tiếp trên máy của bạn thông qua Ollama. Khả năng đọc hiểu tiếng Việt xuất sắc mà không tốn một đồng phí API nào.
+2. **🔎 Tìm Kiếm Lai (Hybrid Search RAG):** 
+   Lưu trữ dữ liệu bằng **Elasticsearch** cho phép kết hợp tìm kiếm theo ngữ nghĩa (Vector) và tìm kiếm theo từ khóa chính xác (BM25 Keyword), giúp lục lọi tài liệu cực kỳ chính xác.
 3. **🎭 Đa Sắc Thái (Router phân luồng):**
-   Bạn có thể hỏi nó kiến thức hàn lâm, nhưng cũng có thể vào chào nó buổi sáng. AI thông minh tự động tách biệt để phục vụ theo đúng kiểu mẫu.
-4. **📖 Quản lý như một Thư Viện Thực Thụ:**
-   Lịch sử chat cũng như tệp tin bạn thả vào sẽ tự động lưu lại phân loại vào "ngăn kéo" (Folder) theo đuôi của nó gọn gàng.
+   AI tự động phân loại xem bạn đang muốn tra cứu tài liệu chuyên ngành hay chỉ đang muốn nói chuyện, tán gẫu thông thường để đưa ra phương án trả lời phù hợp nhất.
+4. **📖 Quản lý Upload Trực Tiếp:**
+   Tất cả tài liệu PDF, Word, Excel tải lên qua giao diện Web sẽ tự động được lưu trữ và nhúng thẳng vào hệ thống Database ngay tức thì. Không cần phải thao tác với Google Drive hay các ứng dụng chạy ngầm phức tạp.
 
 ---
 
-## 🛠 Hướng Dẫn Tinh Chỉnh & Cài Đặt Ban Đầu
+## 🛠 Hướng Dẫn Cài Đặt Ban Đầu
 
-Nếu bạn tải dự án này về một máy tính mới, hãy làm 3 bước sau:
+Vì hệ thống chạy Local 100%, bạn cần chuẩn bị đầy đủ Môi trường Python, Docker và Ollama.
 
-1. **Kích hoạt môi trường (Virtual Environment):**
-   ```bash
-   source .venv/bin/activate
-   ```
-2. **Cài đặt thư viện:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. **Môi trường kết nối (API & Cấu Hình):**
-   Đảm bảo bạn có file `.env` ở thư mục gốc chứa dòng mã:
-   `GOOGLE_API_KEY=AI...`
-   Và thư mục `config/vertex-ai-key.json` đã chứa khóa JSON kết nối mô hình.
-
----
-
-## 🚀 Cách Sử Dụng Ứng Dụng Hàng Ngày
-
-Để trải nghiệm mọi công năng mượt mà nhất, hãy mở **2 cửa sổ Terminal** (cửa sổ lệnh) song song cùng lúc nhé:
-
-### Bước 1: Gọi Trợ Lý Trông Coi (Watchdog) 🐕
-Ở cửa sổ Terminal thứ nhất, hãy kích hoạt người giữ cửa làm nhiệm vụ nhúng Text:
+### Bước 1: Cài đặt Docker và Khởi chạy Elasticsearch
+Hệ thống sử dụng Elasticsearch làm Vector Database. Chạy lệnh sau để khởi động (máy cần có Docker):
 ```bash
-python src/autoEmbed.py
-```
-> *Lúc này Ứng dụng ngầm sẽ chạy và thông báo "Robot HUMG đang canh gác tại Drive...". Hãy treo nó ở đó và để nó chạy ẩn.*
+# Đi vào thư mục gốc của dự án
+cd /home/nam/GenAI_chatbot_for_education
 
-### Bước 2: Bật Giao Diện Tương Tác 💬
-Ở cửa sổ Terminal thứ hai, kích hoạt màn hình trò chuyện Web bằng lệnh:
+# Khởi chạy Elasticsearch ngầm
+sudo docker compose up -d
+```
+
+### Bước 2: Cài đặt Ollama và Tải Mô hình AI
+1. Tải và cài đặt Ollama từ [https://ollama.com](https://ollama.com) (Hoặc chạy `curl -fsSL https://ollama.com/install.sh | sh` trên Linux).
+2. Tải mô hình ngôn ngữ và mô hình nhúng (Chỉ làm 1 lần, dung lượng ~5GB):
+```bash
+ollama pull qwen2.5:7b
+ollama pull nomic-embed-text
+```
+
+### Bước 3: Cài đặt thư viện Python
+Kích hoạt môi trường ảo (nếu có) và cài đặt các gói cần thiết:
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 🚀 Cách Khởi Chạy Ứng Dụng Hàng Ngày
+
+Khi mọi thứ đã được cài đặt xong, mỗi ngày bạn chỉ cần mở Terminal tại thư mục dự án và chạy đúng 1 lệnh duy nhất:
+
 ```bash
 streamlit run src/main.py
 ```
-> *Tự động một trang Web sẽ nhảy lên. Giờ thì bạn tha hồ Tải Tài Liệu Lên và Bắt Đầu Đặt Câu Hỏi cho mọi môn học rồi!*
+
+> *Giao diện Web sẽ tự động bật lên. Lúc này bạn có thể thỏa thích tải lên các file giáo trình và bắt đầu đặt câu hỏi!*
 
 ---
 
-## 📂 Các Định Dạng Bạn Hỗ Trợ 
-Hệ thống sẵn sàng nhai nát và thẩm thấu rất nhiều nguồn tài nguyên:
-- Hệ Văn Bản: `.pdf` (rất mạnh), `.docx`
-- Hệ Dữ Liệu Bảng: `.xlsx`, `.csv`
-- Hệ Trình Chiếu: `.pptx`
+## 📂 Các Định Dạng Hỗ Trợ 
+Hệ thống sẵn sàng phân tích và trích xuất rất nhiều nguồn tài nguyên:
+- **Hệ Văn Bản:** `.pdf` (rất mạnh), `.docx`
+- **Hệ Dữ Liệu Bảng:** `.xlsx`, `.csv`
+- **Hệ Trình Chiếu:** `.pptx`
 
-*(Hình ảnh đuôi ảnh vẫn có thể truyền vào để lưu nhanh qua thư mục, dù AI chưa chính thức bóc chữ trên mặt ảnh để giữ nhẹ ram).*
-
+*(Lưu ý: Bạn có thể chọn tùy chọn "Cho phép ghi đè" trên giao diện khi tải lại các file đã chỉnh sửa để hệ thống tự động cập nhật kiến thức mới vào Database).*

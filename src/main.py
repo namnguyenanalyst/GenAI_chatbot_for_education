@@ -8,23 +8,19 @@ from pathlib import Path
 from modules.models import llm, rag_chain, classify_intent
 from modules.utils import load_all_chats, save_chat, get_folder_map
 from tokenAmount import extract_tokens, log_token_usage, TokenCallbackHandler
+from modules.embedding.processors import get_loader
+from modules.embedding.database import process_and_embed
 
 # --- 1. THIẾT LẬP ĐƯỜNG DẪN TƯƠNG ĐỐI ---
 # Xác định thư mục gốc của dự án (NCKH/)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Tải biến môi trường
-from dotenv import load_dotenv
-load_dotenv(dotenv_path=BASE_DIR / ".env")
-
-# Đường dẫn tới Logo và Dữ liệu
+# Đường dẫn tới Logo và Dữ liệu cục bộ
 LOGO_PATH = BASE_DIR / "assets" / "Images" / "Logo ĐH Mỏ - Địa Chất - HUMG.png"
+DATA_DIR = BASE_DIR / "Data"
+CONFIG_DIR = BASE_DIR / "config"
+DB_DIR = CONFIG_DIR / "vector_db"
 
-google_drive_env = os.getenv("GOOGLE_DRIVE_PATH")
-if not google_drive_env:
-    st.error("⚠️ Lỗi: Không tìm thấy biến môi trường GOOGLE_DRIVE_PATH trong file .env!")
-    st.stop()
-GOOGLE_DRIVE_DIR = Path(google_drive_env)
 st.set_page_config(
     page_title="HUMG AI Assistant", 
     page_icon=LOGO_PATH, 
@@ -66,8 +62,8 @@ with st.sidebar:
                 file_ext = f.name.split('.')[-1].lower()
                 sub_folder = folder_map.get(file_ext, "Others")
                 
-                # 2. ĐƯỜNG DẪN ĐÍCH: Data + Sub_folder
-                target_path = GOOGLE_DRIVE_DIR / sub_folder
+                # 2. ĐƯỜNG DẪN ĐÍCH: Thư mục Data cục bộ + Sub_folder
+                target_path = DATA_DIR / sub_folder
                 
                 try:
                     # 3. LỆNH QUAN TRỌNG: Tạo thư mục con nếu chưa có
@@ -78,11 +74,27 @@ with st.sidebar:
                     if full_file_path.exists() and not allow_overwrite:
                         st.warning(f"⚠️ '{f.name}' đã tồn tại. Hãy tích chọn 'Cho phép ghi đè' nếu muốn cập nhật.")
                     else:
-                        # 4. GHI FILE THỰC TẾ
+                        # 4. GHI FILE THỰC TẾ LÊN LOCAL
                         with open(full_file_path, "wb") as file:
                             file.write(f.getbuffer())
-                        st.success(f"✅ Đã cất {f.name} vào {sub_folder}")
-                        any_success = True
+                        
+                        # 5. TIẾN HÀNH NHÚNG TRỰC TIẾP VÀO DATABASE
+                        with st.spinner(f"Đang xử lý và nhúng dữ liệu file {f.name}..."):
+                            loader = get_loader(full_file_path)
+                            if loader:
+                                try:
+                                    pages = loader.load()
+                                    success = process_and_embed(pages, DB_DIR)
+                                    if success:
+                                        st.success(f"✅ Đã lưu và nhúng {f.name} vào hệ thống!")
+                                        any_success = True
+                                    else:
+                                        st.error(f"❌ Nhúng {f.name} vào database thất bại.")
+                                except Exception as e:
+                                    st.error(f"❌ Lỗi khi đọc file {f.name}: {e}")
+                            else:
+                                st.warning(f"⚠️ Đã lưu {f.name} nhưng hệ thống chưa hỗ trợ trích xuất chữ cho định dạng này.")
+                                any_success = True
                         
                 except Exception as e:
                     st.error(f"❌ Lỗi ghi file {f.name}: {e}")
