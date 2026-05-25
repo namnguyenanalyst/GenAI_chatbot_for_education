@@ -232,8 +232,13 @@ if prompt := st.chat_input("Bạn muốn hỏi gì?"):
                 messages = [
                     (
                         "system", 
-                        f"Bạn là Trợ lý Học liệu số HUMG. Đối tượng: {student_level}. Chế độ: {ai_mode}. "
-                        "Hãy trả lời thân thiện, ngắn gọn và hữu ích. Tránh tự nhận mình là chuyên gia lịch sử."
+                        f"Bạn là Trợ lý Học liệu số HUMG.\n"
+                        f"ĐỐI TƯỢNG NGƯỜI DÙNG: {student_level}\n"
+                        f"CHẾ ĐỘ YÊU CẦU: {ai_mode}\n\n"
+                        "BẮT BUỘC TUÂN THỦ:\n"
+                        "- Nếu chế độ là 'Gia sư Socratic': TUYỆT ĐỐI KHÔNG giải bài hộ hoặc đưa đáp án trực tiếp. Chỉ đặt câu hỏi gợi mở.\n"
+                        "- Nếu chế độ là 'Tạo bài tập': Hãy tạo câu hỏi trắc nghiệm.\n"
+                        "- Trả lời thân thiện, ngắn gọn và hữu ích. Tránh tự nhận mình là chuyên gia lịch sử."
                     ),
                     ("human", full_query)
                 ]
