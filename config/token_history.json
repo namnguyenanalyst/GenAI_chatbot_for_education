@@ -511,5 +511,23 @@
         "input_tokens": 1427,
         "output_tokens": 47,
         "total_tokens": 1474
+    },
+    {
+        "timestamp": "2026-05-25 14:44:51",
+        "chat_id": "20260525_144341",
+        "intent": "CHAT",
+        "query_preview": "chào bạn",
+        "input_tokens": 103,
+        "output_tokens": 22,
+        "total_tokens": 125
+    },
+    {
+        "timestamp": "2026-05-25 14:49:09",
+        "chat_id": "20260525_144341",
+        "intent": "RAG",
+        "query_preview": "bạn hãy cho tôi biết blockchain là gì",
+        "input_tokens": 4096,
+        "output_tokens": 224,
+        "total_tokens": 4320
     }
 ]

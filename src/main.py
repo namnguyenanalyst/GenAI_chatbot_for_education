@@ -107,6 +107,27 @@ with st.sidebar:
 
     st.divider()
     
+    st.subheader("🎯 Cá nhân hóa (Personalization)")
+    student_level = st.selectbox(
+        "Trình độ của bạn:", 
+        [
+            "Sinh viên năm 1 (Cần giải thích đơn giản, ví dụ dễ hiểu)",
+            "Sinh viên năm cuối (Cần giải thích chuyên sâu, hàn lâm)",
+            "Người ngoài ngành (Cần giải thích bằng ngôn ngữ đời thường)"
+        ]
+    )
+    
+    ai_mode = st.selectbox(
+        "Chế độ Trợ lý:", 
+        [
+            "Giải đáp trực tiếp (Nhanh chóng, đi thẳng vấn đề)",
+            "Gia sư Socratic (Gợi mở, không đưa đáp án ngay để SV tự nghĩ)",
+            "Tạo bài tập (Tự động sinh câu hỏi trắc nghiệm từ tài liệu)"
+        ]
+    )
+
+    st.divider()
+    
     st.subheader("📊 Token Phiên Trò Chuyện Mở")
     
     # Đảm bảo state lưu trữ token
@@ -179,7 +200,14 @@ if prompt := st.chat_input("Bạn muốn hỏi gì?"):
             cb = TokenCallbackHandler()
             
             def rag_generator():
-                for chunk in rag_chain.stream({"input": full_query}, config={"callbacks": [cb]}):
+                for chunk in rag_chain.stream(
+                    {
+                        "input": full_query,
+                        "student_profile": student_level,
+                        "ai_mode": ai_mode
+                    }, 
+                    config={"callbacks": [cb]}
+                ):
                     if "answer" in chunk:
                         ans = chunk["answer"]
                         if isinstance(ans, list):
@@ -200,9 +228,13 @@ if prompt := st.chat_input("Bạn muốn hỏi gì?"):
             
             # Hàm sinh stream cho LLM cơ bản
             def chat_generator():
-                # Thêm System Prompt để định hướng AI là trợ lý học tập chung
+                # Thêm System Prompt để định hướng AI là trợ lý học tập chung có cá nhân hóa
                 messages = [
-                    ("system", "Bạn là Trợ lý Học liệu số HUMG (Đại học Mỏ - Địa chất), chuyên hỗ trợ sinh viên trong học tập và nghiên cứu. Hãy trả lời thân thiện, ngắn gọn và hữu ích. Tránh tự nhận mình là chuyên gia lịch sử."),
+                    (
+                        "system", 
+                        f"Bạn là Trợ lý Học liệu số HUMG. Đối tượng: {student_level}. Chế độ: {ai_mode}. "
+                        "Hãy trả lời thân thiện, ngắn gọn và hữu ích. Tránh tự nhận mình là chuyên gia lịch sử."
+                    ),
                     ("human", full_query)
                 ]
                 for chunk in llm.stream(messages, config={"callbacks": [cb]}):
