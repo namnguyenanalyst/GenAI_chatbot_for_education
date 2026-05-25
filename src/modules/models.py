@@ -3,7 +3,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 import streamlit as st
 
-from langchain_community.vectorstores import Chroma
 from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain_classic.chains import create_retrieval_chain
 from langchain_classic.chains.combine_documents import create_stuff_documents_chain
@@ -120,7 +119,7 @@ def classify_intent(user_query, messages):
     CÂU HỎI MỚI: "{user_query}"
 
     QUY TẮC PHÂN LOẠI:
-    - Trả về 'RAG': Nếu câu hỏi cần tra cứu kiến thức từ tài liệu.
+    - Trả về 'RAG': Nếu câu hỏi cần tra cứu kiến thức văn bản, số liệu bảng biểu từ tài liệu.
     - Trả về 'CHAT': Nếu chỉ là chào hỏi, cảm ơn hoặc tán gẫu.
 
     Chỉ trả ra đúng 1 từ duy nhất: 'RAG' hoặc 'CHAT'.

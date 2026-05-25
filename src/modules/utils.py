@@ -27,5 +27,8 @@ def get_folder_map():
         'csv': 'Data_Files',
         'pptx': 'PowerPoint_Files',
         'jpg': 'Image_Files',
-        'png': 'Image_Files'
+        'png': 'Image_Files',
+        'mp3': 'Audio_Files',
+        'wav': 'Audio_Files',
+        'mp4': 'Video_Files'
     }

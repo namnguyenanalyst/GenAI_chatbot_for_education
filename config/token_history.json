@@ -493,5 +493,50 @@
         "input_tokens": 241,
         "output_tokens": 323,
         "total_tokens": 564
+    },
+    {
+        "timestamp": "2026-05-25 14:42:18",
+        "chat_id": "20260525_144043",
+        "intent": "CHAT",
+        "query_preview": "Bạn chép lời cho tôi file tôi vừa đẩy vào",
+        "input_tokens": 93,
+        "output_tokens": 59,
+        "total_tokens": 152
+    },
+    {
+        "timestamp": "2026-05-25 14:44:34",
+        "chat_id": "20260525_144043",
+        "intent": "CHAT",
+        "query_preview": "Tôi vừa đẩy vào hệ thống ảnh gì bạn có nhận ra khô...",
+        "input_tokens": 168,
+        "output_tokens": 53,
+        "total_tokens": 221
+    },
+    {
+        "timestamp": "2026-05-25 14:45:45",
+        "chat_id": "20260525_144043",
+        "intent": "CHAT",
+        "query_preview": "Bạn cho tôi thông tin cụ thể về sinh viên tham gia...",
+        "input_tokens": 244,
+        "output_tokens": 127,
+        "total_tokens": 371
+    },
+    {
+        "timestamp": "2026-05-25 14:46:58",
+        "chat_id": "20260525_144043",
+        "intent": "CHAT",
+        "query_preview": "bạn có thể đọc file âm thanh không",
+        "input_tokens": 367,
+        "output_tokens": 49,
+        "total_tokens": 416
+    },
+    {
+        "timestamp": "2026-05-25 14:51:54",
+        "chat_id": "20260525_144809",
+        "intent": "RAG",
+        "query_preview": "Cho tôi hỏi blockchain là gì",
+        "input_tokens": 4032,
+        "output_tokens": 153,
+        "total_tokens": 4185
     }
 ]

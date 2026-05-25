@@ -45,7 +45,7 @@ with st.sidebar:
     uploaded_files = st.file_uploader(
         "Chọn file (PDF, Word, Excel...)", 
         accept_multiple_files=True, 
-        type=['pdf', 'docx', 'xlsx', 'pptx', 'csv', 'jpg', 'png'],
+        type=['pdf', 'docx', 'xlsx', 'pptx', 'csv', 'jpg', 'jpeg', 'png', 'mp3', 'wav', 'mp4'],
         label_visibility="collapsed"
     )
     

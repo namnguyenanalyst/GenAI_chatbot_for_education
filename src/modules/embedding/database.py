@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from langchain_ollama import OllamaEmbeddings
 from langchain_elasticsearch import ElasticsearchStore
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_experimental.text_splitter import SemanticChunker
 
 def process_and_embed(new_docs, db_dir):
     """Cắt nhỏ và nhúng dữ liệu vào Vector DB theo từng đợt"""
@@ -27,11 +27,11 @@ def process_and_embed(new_docs, db_dir):
         else:
             splittable_docs.append(doc)
 
-    # 2. Xử lý Chunking (Băm) có chủ đích cho file văn bản
-    text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1500, 
-        chunk_overlap=200,
-        separators=["\n\n", "\n", ".", " ", ""]
+    # 2. Xử lý Chunking (Băm) theo Semantic (Ngữ nghĩa) cho file văn bản
+    embeddings_model = OllamaEmbeddings(model="nomic-embed-text")
+    text_splitter = SemanticChunker(
+        embeddings_model, 
+        breakpoint_threshold_type="percentile" # Tách câu khi ngữ nghĩa thay đổi mạnh
     )
     
     chunks = text_splitter.split_documents(splittable_docs)
