@@ -59,8 +59,8 @@ def init_models():
         es_url="http://localhost:9200"
     )
     
-    # Tăng base_retriever k lên 15 để lưới quét rộng hơn
-    retriever = vector_db.as_retriever(search_kwargs={"k": 15})
+    # Chỉnh k=6 để đảm bảo lấy đủ dữ kiện (không quá ít cũng không quá rác)
+    retriever = vector_db.as_retriever(search_kwargs={"k": 6})
     
     system_prompt = (
         "Bạn là Trợ lý Học liệu số chuyên nghiệp của nhóm NCKH HUMG.\n\n"
@@ -107,9 +107,9 @@ llm, rag_chain = init_models()
 
 # --- 2. HÀM PHÂN LOẠI Ý ĐỊNH (ROUTER) ---
 def classify_intent(user_query, messages):
-    # LỌC NHANH (Rule-based): Bỏ qua LLM nếu là câu hỏi ngắn/giao tiếp
-    chat_keywords = ["chào", "hello", "hi", "tác dụng", "là ai", "giúp gì", "cảm ơn", "tạm biệt", "ok", "dạ", "vậy bạn"]
-    if len(user_query.split()) < 4 or any(k in user_query.lower() for k in chat_keywords):
+    # LỌC NHANH: Tránh phân loại nhầm các câu hỏi tra cứu ngắn (Bỏ các từ khóa như "là ai", "tác dụng")
+    chat_keywords = ["chào", "hello", "hi", "cảm ơn", "tạm biệt", "ok", "dạ", "bye"]
+    if len(user_query.split()) < 2 or (len(user_query.split()) < 4 and any(k in user_query.lower() for k in chat_keywords)):
         return "CHAT"
 
     history_context = ""
