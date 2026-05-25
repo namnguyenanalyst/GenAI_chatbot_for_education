@@ -111,6 +111,7 @@ with st.sidebar:
     student_level = st.selectbox(
         "Trình độ của bạn:", 
         [
+            "Bình thường (Giữ nguyên văn bản gốc, không biến tấu)",
             "Sinh viên năm 1 (Cần giải thích đơn giản, ví dụ dễ hiểu)",
             "Sinh viên năm cuối (Cần giải thích chuyên sâu, hàn lâm)",
             "Người ngoài ngành (Cần giải thích bằng ngôn ngữ đời thường)"
@@ -120,6 +121,7 @@ with st.sidebar:
     ai_mode = st.selectbox(
         "Chế độ Trợ lý:", 
         [
+            "Tra cứu bình thường (Chỉ trích xuất thông tin, không thêm bớt)",
             "Giải đáp trực tiếp (Nhanh chóng, đi thẳng vấn đề)",
             "Gia sư Socratic (Gợi mở, không đưa đáp án ngay để SV tự nghĩ)",
             "Tạo bài tập (Tự động sinh câu hỏi trắc nghiệm từ tài liệu)"
