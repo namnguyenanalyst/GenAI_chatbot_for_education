@@ -9,6 +9,9 @@ from langchain_classic.chains.combine_documents import create_stuff_documents_ch
 from langchain_core.prompts import ChatPromptTemplate, PromptTemplate
 from langchain_elasticsearch import ElasticsearchStore
 from langchain_classic.retrievers.multi_query import MultiQueryRetriever
+from langchain_experimental.agents.agent_toolkits import create_pandas_dataframe_agent
+import pandas as pd
+import glob
 
 # --- 1. THIẾT LẬP ĐƯỜNG DẪN TƯƠNG ĐỐI ---
 # File này đang nằm ở: src/modules/models.py
@@ -49,6 +52,7 @@ def init_models():
     llm = ChatOllama(
         model="qwen2.5:7b",
         temperature=0.3,
+        num_ctx=32768, # Tăng trí nhớ lên 32k token để đọc trọn vẹn 50 chunks từ k=50
     )
 
     # Kết nối Vector DB bằng ElasticsearchStore
@@ -95,21 +99,83 @@ def init_models():
         template="{page_content}\n[Nguồn gốc: {filename}]\n"
     )
     
-    # Tạo Chain
     qa_chain = create_stuff_documents_chain(llm, prompt, document_prompt=document_prompt)
-    rag_chain = create_retrieval_chain(retriever, qa_chain)
     
-    return llm, rag_chain
+    return llm, prompt, document_prompt, vector_db
 
-# Khởi tạo model
-llm, rag_chain = init_models()
+# Khởi tạo model cơ sở
+llm, prompt, document_prompt, vector_db = init_models()
 
-# --- 2. HÀM PHÂN LOẠI Ý ĐỊNH (ROUTER) ---
+def get_rag_chain(target_filename=None):
+    """Tạo chain RAG có khả năng focus vào 1 file cụ thể nếu cần"""
+    if target_filename and target_filename != "Tất cả tài liệu":
+        # Lọc chặt chẽ trong Elasticsearch chỉ lấy đúng chunk của file này
+        retriever = vector_db.as_retriever(
+            search_kwargs={
+                "k": 50,
+                "filter": [{"term": {"metadata.filename.keyword": target_filename}}]
+            }
+        )
+    else:
+        # Tìm kiếm trên toàn bộ database
+        retriever = vector_db.as_retriever(search_kwargs={"k": 50})
+        
+    qa_chain = create_stuff_documents_chain(llm, prompt, document_prompt=document_prompt)
+    return create_retrieval_chain(retriever, qa_chain)
+
+# --- 2. TẠO DATA AGENT ĐỂ XỬ LÝ CSV/EXCEL ---
+def get_data_agent(target_filename=None):
+    # Tìm tất cả file CSV và Excel
+    csv_files = glob.glob(str(DATA_DIR / "**/*.csv"), recursive=True)
+    xlsx_files = glob.glob(str(DATA_DIR / "**/*.xlsx"), recursive=True)
+    all_data_files = csv_files + xlsx_files
+    
+    if not all_data_files:
+        return None
+    
+    # Nếu người dùng chọn đích danh 1 file trong Vùng Tìm Kiếm
+    target_file_path = None
+    if target_filename and target_filename != "Tất cả tài liệu":
+        for f in all_data_files:
+            if Path(f).name == target_filename:
+                target_file_path = f
+                break
+                
+    # Nếu không tìm thấy hoặc người dùng chọn "Tất cả tài liệu", lấy file mới nhất
+    if not target_file_path:
+        target_file_path = max(all_data_files, key=os.path.getmtime)
+    
+    try:
+        if target_file_path.endswith('.csv'):
+            df = pd.read_csv(target_file_path)
+        else:
+            df = pd.read_excel(target_file_path)
+    except Exception as e:
+        print(f"Lỗi đọc file {target_file_path}: {e}")
+        return None
+        
+    # Tạo Pandas Agent chỉ tập trung xử lý đúng file này
+    agent = create_pandas_dataframe_agent(
+        llm,
+        df,
+        verbose=True,
+        allow_dangerous_code=True,
+        agent_type="zero-shot-react-description",
+        handle_parsing_errors=True
+    )
+    return agent
+
+# --- 3. HÀM PHÂN LOẠI Ý ĐỊNH (ROUTER) ---
 def classify_intent(user_query, messages):
     # LỌC NHANH (Rule-based): Bỏ qua LLM nếu là câu hỏi ngắn/giao tiếp
     chat_keywords = ["chào", "hello", "hi", "tác dụng", "là ai", "giúp gì", "cảm ơn", "tạm biệt", "ok", "dạ", "vậy bạn"]
     if len(user_query.split()) < 4 or any(k in user_query.lower() for k in chat_keywords):
         return "CHAT"
+
+    # LỌC DỮ LIỆU BẢNG: Đưa sang luồng Data Agent nếu hỏi về tính toán, giá cả
+    data_keywords = ["giá", "đắt nhất", "rẻ nhất", "thấp nhất", "cao nhất", "trung bình", "thống kê", "tổng số", "tổng cộng", "file csv", "file excel", "bảng", "tính toán", "sản phẩm"]
+    if any(k in user_query.lower() for k in data_keywords):
+        return "DATA"
 
     history_context = ""
     for m in messages[-6:]:
@@ -125,11 +191,12 @@ def classify_intent(user_query, messages):
 
     CÂU HỎI MỚI: "{user_query}"
 
-    QUY TẮC PHÂN LOẠI:
-    - Trả về 'RAG': Nếu câu hỏi cần tra cứu kiến thức văn bản, số liệu bảng biểu từ tài liệu.
-    - Trả về 'CHAT': Nếu chỉ là chào hỏi, cảm ơn hoặc tán gẫu.
+    QUY TẮC PHÂN LOẠI CỰC KỲ NGHIÊM NGẶT:
+    1. Trả về 'DATA' NẾU VÀ CHỈ NẾU câu hỏi yêu cầu tính toán, đếm số lượng, liên quan đến giá tiền, tìm giá trị cao nhất/thấp nhất từ bảng biểu.
+    2. Trả về 'CHAT' NẾU VÀ CHỈ NẾU câu hỏi đơn thuần là giao tiếp xã giao (ví dụ: xin chào, cảm ơn, tạm biệt, khen ngợi).
+    3. Trả về 'RAG' CHO TẤT CẢ CÁC TRƯỜNG HỢP CÒN LẠI (khi người dùng hỏi kiến thức, định nghĩa, "là gì", "tại sao", "như thế nào"). ĐÂY LÀ MẶC ĐỊNH.
 
-    Chỉ trả ra đúng 1 từ duy nhất: 'RAG' hoặc 'CHAT'.
+    Chỉ trả ra đúng 1 từ duy nhất: 'DATA', 'RAG' hoặc 'CHAT'. Không giải thích thêm.
     """
     
     # SỬ DỤNG CHUNG LLM CHÍNH CHO PHÂN LOẠI

@@ -493,5 +493,365 @@
         "input_tokens": 241,
         "output_tokens": 323,
         "total_tokens": 564
+    },
+    {
+        "timestamp": "2026-05-25 15:16:33",
+        "chat_id": "20260525_151609",
+        "intent": "RAG",
+        "query_preview": "git checkout là gì ",
+        "input_tokens": 2595,
+        "output_tokens": 33,
+        "total_tokens": 2628
+    },
+    {
+        "timestamp": "2026-05-25 15:17:39",
+        "chat_id": "20260525_151609",
+        "intent": "CHAT",
+        "query_preview": "Bạn hãy cho tôi thông tin về phiếu đề xuất NCKH củ...",
+        "input_tokens": 248,
+        "output_tokens": 47,
+        "total_tokens": 295
+    },
+    {
+        "timestamp": "2026-05-25 15:18:02",
+        "chat_id": "20260525_151609",
+        "intent": "CHAT",
+        "query_preview": "Nguyễn Hải Nam là ai",
+        "input_tokens": 304,
+        "output_tokens": 48,
+        "total_tokens": 352
+    },
+    {
+        "timestamp": "2026-05-25 15:18:53",
+        "chat_id": "20260525_151609",
+        "intent": "CHAT",
+        "query_preview": "ạn hãy cho tôi thông tin về phiếu đề xuất THKT",
+        "input_tokens": 362,
+        "output_tokens": 64,
+        "total_tokens": 426
+    },
+    {
+        "timestamp": "2026-05-25 15:19:35",
+        "chat_id": "20260525_151609",
+        "intent": "RAG",
+        "query_preview": "cho tôi nhưng sinh viên tham gia NCKH",
+        "input_tokens": 4096,
+        "output_tokens": 96,
+        "total_tokens": 4192
+    },
+    {
+        "timestamp": "2026-05-25 15:20:22",
+        "chat_id": "20260525_151609",
+        "intent": "CHAT",
+        "query_preview": "Tôi là ai",
+        "input_tokens": 434,
+        "output_tokens": 52,
+        "total_tokens": 486
+    },
+    {
+        "timestamp": "2026-05-25 15:20:47",
+        "chat_id": "20260525_151609",
+        "intent": "RAG",
+        "query_preview": "Tôi muốn biết về danh sách sinh viên tham gia NCKH...",
+        "input_tokens": 4096,
+        "output_tokens": 229,
+        "total_tokens": 4325
+    },
+    {
+        "timestamp": "2026-05-25 15:24:10",
+        "chat_id": "20260525_152403",
+        "intent": "CHAT",
+        "query_preview": "xin chào",
+        "input_tokens": 192,
+        "output_tokens": 19,
+        "total_tokens": 211
+    },
+    {
+        "timestamp": "2026-05-25 15:24:26",
+        "chat_id": "20260525_152403",
+        "intent": "RAG",
+        "query_preview": "Bạn có biết gì về trường Đại học Mỏ - Địa Chất khô...",
+        "input_tokens": 1631,
+        "output_tokens": 36,
+        "total_tokens": 1667
+    },
+    {
+        "timestamp": "2026-05-25 15:26:40",
+        "chat_id": "20260525_152403",
+        "intent": "CHAT",
+        "query_preview": "nguyễn hải nam là ai\\",
+        "input_tokens": 276,
+        "output_tokens": 60,
+        "total_tokens": 336
+    },
+    {
+        "timestamp": "2026-05-25 15:27:13",
+        "chat_id": "20260525_152403",
+        "intent": "RAG",
+        "query_preview": "các mô hình phân tích dữ liệu gồm có những cái gì",
+        "input_tokens": 5154,
+        "output_tokens": 160,
+        "total_tokens": 5314
+    },
+    {
+        "timestamp": "2026-05-25 15:30:05",
+        "chat_id": "20260525_152403",
+        "intent": "RAG",
+        "query_preview": "Các đầu mục trong chương trình rèn luyện gồm có nh...",
+        "input_tokens": 7128,
+        "output_tokens": 155,
+        "total_tokens": 7283
+    },
+    {
+        "timestamp": "2026-05-25 15:31:00",
+        "chat_id": "20260525_153019",
+        "intent": "RAG",
+        "query_preview": "Hãy cho tôi thông tin về các đầu mục lớn trong mẫu...",
+        "input_tokens": 2754,
+        "output_tokens": 118,
+        "total_tokens": 2872
+    },
+    {
+        "timestamp": "2026-05-25 15:36:28",
+        "chat_id": "20260525_153620",
+        "intent": "RAG",
+        "query_preview": "Lập trình C là gì ",
+        "input_tokens": 1398,
+        "output_tokens": 38,
+        "total_tokens": 1436
+    },
+    {
+        "timestamp": "2026-05-25 15:36:49",
+        "chat_id": "20260525_153620",
+        "intent": "RAG",
+        "query_preview": "Lập trình C là gì",
+        "input_tokens": 5518,
+        "output_tokens": 243,
+        "total_tokens": 5761
+    },
+    {
+        "timestamp": "2026-05-25 15:38:43",
+        "chat_id": "20260525_153754",
+        "intent": "RAG",
+        "query_preview": "Hãy cho tôi thông tin các đầu mục lớn trong mẫu ch...",
+        "input_tokens": 2850,
+        "output_tokens": 118,
+        "total_tokens": 2968
+    },
+    {
+        "timestamp": "2026-05-25 15:56:29",
+        "chat_id": "20260525_155543",
+        "intent": "DATA",
+        "query_preview": "Bạn hãy cho tôi thông tin về giá cao nhất và giá t...",
+        "input_tokens": 1500,
+        "output_tokens": 200,
+        "total_tokens": 1700
+    },
+    {
+        "timestamp": "2026-05-25 15:57:59",
+        "chat_id": "20260525_155543",
+        "intent": "RAG",
+        "query_preview": "bạn hãy cho tôi thông tin các đầu mục lớn về mẫu c...",
+        "input_tokens": 4342,
+        "output_tokens": 102,
+        "total_tokens": 4444
+    },
+    {
+        "timestamp": "2026-05-25 15:58:13",
+        "chat_id": "20260525_155543",
+        "intent": "RAG",
+        "query_preview": "các đầu mục lớn cơ mà",
+        "input_tokens": 5294,
+        "output_tokens": 102,
+        "total_tokens": 5396
+    },
+    {
+        "timestamp": "2026-05-25 15:58:27",
+        "chat_id": "20260525_155543",
+        "intent": "RAG",
+        "query_preview": "các đầu mục lớn cơ mà",
+        "input_tokens": 5585,
+        "output_tokens": 124,
+        "total_tokens": 5709
+    },
+    {
+        "timestamp": "2026-05-25 15:59:49",
+        "chat_id": "20260525_155936",
+        "intent": "DATA",
+        "query_preview": "bạn hãy cho tôi thông tin có trong file Test_Data",
+        "input_tokens": 1500,
+        "output_tokens": 200,
+        "total_tokens": 1700
+    },
+    {
+        "timestamp": "2026-05-25 16:03:53",
+        "chat_id": "20260525_160320",
+        "intent": "CHAT",
+        "query_preview": "Quản lý rủi ro doanh nghiệp là gì",
+        "input_tokens": 201,
+        "output_tokens": 89,
+        "total_tokens": 290
+    },
+    {
+        "timestamp": "2026-05-25 16:04:07",
+        "chat_id": "20260525_160320",
+        "intent": "RAG",
+        "query_preview": "vẫn câu hỏi đó",
+        "input_tokens": 5430,
+        "output_tokens": 186,
+        "total_tokens": 5616
+    },
+    {
+        "timestamp": "2026-05-25 16:04:28",
+        "chat_id": "20260525_160320",
+        "intent": "CHAT",
+        "query_preview": "Quản lý rủi ro doanh nghiệp là gì ",
+        "input_tokens": 500,
+        "output_tokens": 128,
+        "total_tokens": 628
+    },
+    {
+        "timestamp": "2026-05-25 16:05:02",
+        "chat_id": "20260525_160320",
+        "intent": "CHAT",
+        "query_preview": "Cho tôi hỏi tầm quan trọng của Quản trị rủi ro doa...",
+        "input_tokens": 635,
+        "output_tokens": 247,
+        "total_tokens": 882
+    },
+    {
+        "timestamp": "2026-05-25 16:09:12",
+        "chat_id": "20260525_160814",
+        "intent": "CHAT",
+        "query_preview": "Cho tôi hỏi tầm quan trọng của quản trị rủi ro doa...",
+        "input_tokens": 208,
+        "output_tokens": 130,
+        "total_tokens": 338
+    },
+    {
+        "timestamp": "2026-05-25 16:10:05",
+        "chat_id": "20260525_160814",
+        "intent": "RAG",
+        "query_preview": "What is the importance of Enterprise Risk Manageme...",
+        "input_tokens": 8230,
+        "output_tokens": 224,
+        "total_tokens": 8454
+    },
+    {
+        "timestamp": "2026-05-25 16:14:29",
+        "chat_id": "20260525_161351",
+        "intent": "CHAT",
+        "query_preview": "Tầm quan trọng của quản trị rủi ro doanh nghiệp là...",
+        "input_tokens": 206,
+        "output_tokens": 99,
+        "total_tokens": 305
+    },
+    {
+        "timestamp": "2026-05-25 16:14:48",
+        "chat_id": "20260525_161351",
+        "intent": "RAG",
+        "query_preview": "vẫn câu hỏi đó",
+        "input_tokens": 8026,
+        "output_tokens": 70,
+        "total_tokens": 8096
+    },
+    {
+        "timestamp": "2026-05-25 16:15:36",
+        "chat_id": "20260525_161351",
+        "intent": "RAG",
+        "query_preview": "Nội dung của file powerpoint CCM301 là gì",
+        "input_tokens": 8407,
+        "output_tokens": 119,
+        "total_tokens": 8526
+    },
+    {
+        "timestamp": "2026-05-25 16:16:03",
+        "chat_id": "20260525_161351",
+        "intent": "RAG",
+        "query_preview": "Nội dung của file powerpoint CCM301 là gì",
+        "input_tokens": 6609,
+        "output_tokens": 142,
+        "total_tokens": 6751
+    },
+    {
+        "timestamp": "2026-05-25 16:29:49",
+        "chat_id": "20260525_162851",
+        "intent": "CHAT",
+        "query_preview": "CHo tôi hỏi tầm quan trọng của quản trị rủi ro doa...",
+        "input_tokens": 209,
+        "output_tokens": 111,
+        "total_tokens": 320
+    },
+    {
+        "timestamp": "2026-05-25 16:30:47",
+        "chat_id": "20260525_162851",
+        "intent": "CHAT",
+        "query_preview": "Cho tôi thông tin về danh sách các sinh viên tham ...",
+        "input_tokens": 346,
+        "output_tokens": 52,
+        "total_tokens": 398
+    },
+    {
+        "timestamp": "2026-05-25 16:32:45",
+        "chat_id": "20260525_163140",
+        "intent": "RAG",
+        "query_preview": "Cho tôi hỏi blockchain là gì",
+        "input_tokens": 18402,
+        "output_tokens": 292,
+        "total_tokens": 18694
+    },
+    {
+        "timestamp": "2026-05-25 16:35:42",
+        "chat_id": "20260525_163140",
+        "intent": "DATA",
+        "query_preview": "Cho tôi giá cao nhất và giá thấp nhất của saxophon...",
+        "input_tokens": 1500,
+        "output_tokens": 200,
+        "total_tokens": 1700
+    },
+    {
+        "timestamp": "2026-05-25 16:38:33",
+        "chat_id": "20260525_163808",
+        "intent": "DATA",
+        "query_preview": "Bạn hãy cho tôi giá cao nhất và giá thấp nhất của ...",
+        "input_tokens": 100,
+        "output_tokens": 100,
+        "total_tokens": 200
+    },
+    {
+        "timestamp": "2026-05-25 16:41:43",
+        "chat_id": "20260525_164039",
+        "intent": "RAG",
+        "query_preview": "Lập trình C là gì",
+        "input_tokens": 6153,
+        "output_tokens": 171,
+        "total_tokens": 6324
+    },
+    {
+        "timestamp": "2026-05-25 16:42:40",
+        "chat_id": "20260525_164039",
+        "intent": "RAG",
+        "query_preview": "Bạn hãy cho tôi thông tin về về danh sách sinh viê...",
+        "input_tokens": 2662,
+        "output_tokens": 135,
+        "total_tokens": 2797
+    },
+    {
+        "timestamp": "2026-05-25 16:43:30",
+        "chat_id": "20260525_164039",
+        "intent": "RAG",
+        "query_preview": "Bạn hãy cho tôi thông tin về mẫu chương trình rèn ...",
+        "input_tokens": 4798,
+        "output_tokens": 302,
+        "total_tokens": 5100
+    },
+    {
+        "timestamp": "2026-05-25 16:44:20",
+        "chat_id": "20260525_164039",
+        "intent": "CHAT",
+        "query_preview": "Cho tôi hỏi tầm quan trọng của quản trị rủi ro doa...",
+        "input_tokens": 859,
+        "output_tokens": 141,
+        "total_tokens": 1000
     }
 ]

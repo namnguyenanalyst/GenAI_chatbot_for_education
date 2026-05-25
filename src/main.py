@@ -5,7 +5,7 @@ import os
 
 from datetime import datetime
 from pathlib import Path
-from modules.models import llm, rag_chain, classify_intent
+from modules.models import llm, get_rag_chain, classify_intent, get_data_agent
 from modules.utils import load_all_chats, save_chat, get_folder_map
 from tokenAmount import extract_tokens, log_token_usage, TokenCallbackHandler
 from modules.embedding.processors import get_loader
@@ -107,6 +107,22 @@ with st.sidebar:
 
     st.divider()
     
+    st.subheader("🎯 Cài đặt Vùng Tìm Kiếm (Focus)")
+    
+    # Quét tất cả các file đã tải lên trong thư mục Data để làm bộ lọc
+    import glob
+    all_files_in_data = glob.glob("Data/**/*.*", recursive=True)
+    file_names = ["Tất cả tài liệu"] + [Path(f).name for f in all_files_in_data if Path(f).is_file()]
+    
+    target_focus = st.selectbox(
+        "Chỉ tìm kiếm trên file:",
+        options=list(set(file_names)), # Loại bỏ trùng lặp
+        index=0,
+        help="Giúp hệ thống không bị đọc nhầm sang file cũ khi có các file chứa nội dung tương tự nhau."
+    )
+    
+    st.divider()
+    
     st.subheader("🎯 Cá nhân hóa (Personalization)")
     student_level = st.selectbox(
         "Trình độ của bạn:", 
@@ -201,6 +217,9 @@ if prompt := st.chat_input("Bạn muốn hỏi gì?"):
             # Dùng Custom Callback để nghe ngóng hoạt động tiêu thụ token
             cb = TokenCallbackHandler()
             
+            # Lấy RAG chain tập trung vào target file
+            rag_chain = get_rag_chain(target_focus)
+            
             def rag_generator():
                 for chunk in rag_chain.stream(
                     {
@@ -225,6 +244,27 @@ if prompt := st.chat_input("Bạn muốn hỏi gì?"):
                 "output": cb.outputs,
                 "total": cb.total
             }
+        elif "DATA" in intent:
+            agent = get_data_agent(target_focus)
+            if agent:
+                # Agent có thể mất nhiều thời gian chạy Python code, hiển thị spinner
+                with st.spinner("AI đang viết code phân tích dữ liệu bảng..."):
+                    try:
+                        ans = agent.invoke({"input": prompt})
+                        st.markdown(ans["output"])
+                        response = ans["output"]
+                        # Ghi nhận token ước tính (vì agent toolkit khó bóc tách token chính xác bằng callback)
+                        current_tokens = {"input": 1500, "output": 200, "total": 1700}
+                    except Exception as e:
+                        error_msg = f"Rất tiếc, tôi không thể chạy mã phân tích dữ liệu lúc này. Lỗi: {e}"
+                        st.markdown(error_msg)
+                        response = error_msg
+                        current_tokens = {"input": 100, "output": 100, "total": 200}
+            else:
+                msg = "Tôi không tìm thấy file Excel hoặc CSV nào trong hệ thống để phân tích."
+                st.markdown(msg)
+                response = msg
+                current_tokens = {"input": 50, "output": 50, "total": 100}
         else:
             cb = TokenCallbackHandler()
             

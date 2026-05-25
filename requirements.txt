@@ -10,6 +10,7 @@ langchain-core>=0.2.0
 langchain-text-splitters>=0.2.0
 langchain-experimental
 pandas
+tabulate
 
 # Cơ sở dữ liệu Vector
 elasticsearch>=8.13.0
