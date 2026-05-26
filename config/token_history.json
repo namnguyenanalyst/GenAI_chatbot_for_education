@@ -853,5 +853,14 @@
         "input_tokens": 859,
         "output_tokens": 141,
         "total_tokens": 1000
+    },
+    {
+        "timestamp": "2026-05-26 08:52:44",
+        "chat_id": "20260526_084117",
+        "intent": "CHAT",
+        "query_preview": "Blockchain là gì",
+        "input_tokens": 189,
+        "output_tokens": 55,
+        "total_tokens": 244
     }
 ]

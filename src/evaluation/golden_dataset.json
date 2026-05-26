@@ -1,6 +1,42 @@
 [
     {
         "question": "Khoa Công nghệ thông tin Đại học Mỏ - Địa chất được thành lập vào ngày tháng năm nào?",
-        "ground_truth": "Ngày 07 tháng 11 năm 2002."
+        "ground_truth": "Khoa Công nghệ thông tin được thành lập vào ngày 07/11/2002."
+    },
+    {
+        "question": "Học phí ngành Công nghệ thông tin là bao nhiêu?",
+        "ground_truth": "Học phí năm 2024 là 499.100 VNĐ/tín chỉ."
+    },
+    {
+        "question": "Hiện nay, khoa Công nghệ thông tin có bao nhiêu chuyên ngành đào tạo đại học?",
+        "ground_truth": "Hiện nay, khoa có 6 chuyên ngành đào tạo đại học: Công nghệ phần mềm, Mạng máy tính, Khoa học máy tính, Hệ thống thông tin, Công nghệ thông tin địa học, Tin học kinh tế"
+    },
+    {
+        "question": "Trưởng khoa Công nghệ thông tin Đại học Mỏ - Địa chất là ai ?",
+        "ground_truth": "PGS. TS. Lê Hồng Anh"
+    },
+    {
+        "question": "Phó trưởng khoa Công nghệ thông tin Đại học Mỏ - Địa chất là ai?",
+        "ground_truth": "GVC. TS. Nguyễn Duy Huy"
+    },
+    {
+        "question": "Các hình thức tuyển sinh vào khoa là gì?",
+        "ground_truth": "Các hình thức tuyển sinh bao gồm xét học bạ, xét kết quả thi THPT Quốc gia và xét tuyển thẳng HSG theo kết quả THPT, HSG cấp Quốc gia, quốc tế, xét kết quả ĐGTD của ĐHBK, ĐHQG."
+    },
+    {
+        "question": "Khoa có hợp tác với doanh nghiệp nào không?",
+        "ground_truth": "Khoa hợp tác với nhiều doanh nghiệp lớn như FPT, CMC, VNPT và các startup công nghệ."
+    },
+    {
+        "question": "Thời gian đào tạo cho sinh viên hệ chính quy là bao lâu?",
+        "ground_truth": "Thời gian đào tạo tiêu chuẩn là 4.5 năm."
+    },
+    {
+        "question": "Văn phòng khoa Công nghệ thông tin đặt tại tòa nhà nào?",
+        "ground_truth": "Văn phòng khoa đặt tại Tòa nhà C, Trường Đại học Mỏ - Địa chất."
+    },
+    {
+        "question": "Tân Hiệu trưởng trường Đại học Mỏ - Địa chất là ai?",
+        "ground_truth": "PGS.TS Trần Xuân Trường"
     }
 ]
